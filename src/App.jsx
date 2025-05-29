@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
   const originalFormData = { author: "", title: "", text: "" };
@@ -19,6 +20,11 @@ function App() {
     const newPostsArray = [...formData, newPost];
     setFormData(newPostsArray);
     setNewPost(originalFormData);
+    axios
+      .post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts", newPost)
+      .then((res) => {
+        console.log(res.data);
+      });
   };
 
   useEffect(() => {
